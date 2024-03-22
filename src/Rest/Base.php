@@ -63,7 +63,7 @@ abstract class Base extends \stdClass
     {
         $data = self::dataDiff($this->toArray(true), $this->originalState);
 
-        $method = !empty($data[static::$PRIMARY_KEY]) ? "put" : "post";
+        $method = !empty($this->originalState[static::$PRIMARY_KEY]) ? "put" : "post";
 
         $saveBody = [static::getJsonBodyName() => $data];
         $response = self::request($method, $method, $this->session, [], [], $saveBody, $this);
